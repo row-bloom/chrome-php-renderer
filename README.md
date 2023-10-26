@@ -55,8 +55,6 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
-![class diagram](./class_diagram.drawio.png)
-
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
