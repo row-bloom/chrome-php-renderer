@@ -16,7 +16,6 @@
     ],
     "require": {
         "php": "^8.1",
-        "ext-sockets": "*",
         "illuminate/container": "*",
         "chrome-php/chrome": "^1.9"
     },
