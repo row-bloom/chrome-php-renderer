@@ -3,13 +3,8 @@
 use RowBloom\ChromePhpRenderer\ChromePhpRenderer;
 use RowBloom\RowBloom\Config;
 use RowBloom\RowBloom\Options;
-use RowBloom\RowBloom\Renderers\RendererFactory;
 use RowBloom\RowBloom\Types\Css;
 use RowBloom\RowBloom\Types\Html;
-
-it('factorize')
-    ->expect(fn () => app()->make(RendererFactory::class)->make(ChromePhpRenderer::NAME))
-    ->toBeInstanceOf(ChromePhpRenderer::class);
 
 it('renders and get (basic)')
     ->with([
@@ -20,8 +15,8 @@ it('renders and get (basic)')
             'config' => app()->make(Config::class),
         ],
     ])
-    ->expect(function ($template, $css, $options, $config) {
-        return app()->make(RendererFactory::class)->make(ChromePhpRenderer::NAME)
+    ->expect(function (Html $template, Css $css, Options $options, Config $config) {
+        return app()->make(ChromePhpRenderer::class)
             ->render($template, $css, $options, $config)->get();
     })
     // ? more assertions
