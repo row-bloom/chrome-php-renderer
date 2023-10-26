@@ -28,8 +28,8 @@ Might require the `sockets` extension.
 ## Usage
 
 ```php
+use RowBloom\ChromePhpRenderer\ChromePhpRenderer;
 use RowBloom\RowBloom\Interpolators\PhpInterpolator;
-use RowBloom\RowBloom\Renderers\ChromePhpRenderer;
 use RowBloom\RowBloom\RowBloom;
 
 app()->get(RowBloom::class)
