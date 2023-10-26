@@ -1,8 +1,8 @@
 <?php
 
+use RowBloom\ChromePhpRenderer\ChromePhpRenderer;
 use RowBloom\RowBloom\Config;
 use RowBloom\RowBloom\Options;
-use RowBloom\ChromePhpRenderer\ChromePhpRenderer;
 use RowBloom\RowBloom\Renderers\RendererFactory;
 use RowBloom\RowBloom\Types\Css;
 use RowBloom\RowBloom\Types\Html;
