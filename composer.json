@@ -1,0 +1,59 @@
+{
+    "name": "row-bloom/chrome-php-renderer",
+    "description": "row-bloom renderer driver",
+    "keywords": [
+        "pdf",
+        "rendering"
+    ],
+    "homepage": "https://github.com/row-bloom/chrome-php-renderer",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "medilies",
+            "email": "medilies.contact@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "ext-sockets": "*",
+        "illuminate/container": "*",
+        "chrome-php/chrome": "^1.9"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.0",
+        "mockery/mockery": "^1.6",
+        "pestphp/pest": "^2.0",
+        "pestphp/pest-plugin-arch": "^2.0",
+        "pestphp/pest-plugin-laravel": "^2.0",
+        "phpstan/extension-installer": "^1.1",
+        "phpstan/phpstan-deprecation-rules": "^1.0",
+        "phpstan/phpstan-phpunit": "^1.0",
+        "row-bloom/row-bloom": "dev-main"
+    },
+    "autoload": {
+        "psr-4": {
+            "RowBloom\\ChromePhpRenderer\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "RowBloom\\ChromePhpRenderer\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "analyse": "vendor/bin/phpstan analyse",
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage",
+        "format": "vendor/bin/pint"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
