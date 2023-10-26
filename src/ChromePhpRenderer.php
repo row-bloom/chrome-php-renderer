@@ -14,7 +14,7 @@ use RowBloom\RowBloom\Types\Html;
 
 class ChromePhpRenderer implements RendererContract
 {
-    public const NAME = 'PhpChrome';
+    public const NAME = 'Chrome';
 
     protected string $rendering;
 
