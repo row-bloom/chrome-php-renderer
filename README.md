@@ -21,9 +21,8 @@ app()->get(Support::class);
 
 Requires:
 
-Might require the `sockets` extension.
-
 - PHP 8.1
+- `sockets` extension.
 
 ## Usage
 
