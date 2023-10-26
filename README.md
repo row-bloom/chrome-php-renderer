@@ -29,7 +29,7 @@ Might require the `sockets` extension.
 
 ```php
 use RowBloom\RowBloom\Interpolators\PhpInterpolator;
-use RowBloom\RowBloom\Renderers\PhpChromeRenderer;
+use RowBloom\RowBloom\Renderers\ChromePhpRenderer;
 use RowBloom\RowBloom\RowBloom;
 
 app()->get(RowBloom::class)
@@ -43,7 +43,7 @@ app()->get(RowBloom::class)
         <p>Bold text</p>
         <div><?= $body ?></div>
     ')
-    ->setRenderer(PhpChromeRenderer::class)
+    ->setRenderer(ChromePhpRenderer::class)
     ->save(__DIR__.'/foo.pdf');
 ```
 
