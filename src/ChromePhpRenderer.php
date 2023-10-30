@@ -46,7 +46,7 @@ class ChromePhpRenderer implements RendererContract
         $this->options = $options;
 
         /** @var BrowserFactory */
-        $browserFactory = app()->make(BrowserFactory::class, ['chromeBinary' => $config->getChromePath()]);
+        $browserFactory = app()->make(BrowserFactory::class, ['chromeBinary' => $config->chromePath]);
         $browser = $browserFactory->createBrowser();
         $page = $browser->createPage();
 
