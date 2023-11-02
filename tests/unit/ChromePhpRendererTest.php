@@ -7,7 +7,7 @@ use RowBloom\RowBloom\Types\Css;
 use RowBloom\RowBloom\Types\Html;
 
 it('renders and get (basic)', function (Html $template, Css $css) {
-    $rendering = (new ChromePhpRenderer)->render($template, $css, new Options, new Config)
+    $rendering = (new ChromePhpRenderer)->render($template, $css, new Options)
         ->get();
 
     expect($rendering)->toBeString();

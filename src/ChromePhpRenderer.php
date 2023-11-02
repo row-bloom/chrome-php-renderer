@@ -26,6 +26,10 @@ class ChromePhpRenderer implements RendererContract
 
     protected array $phpChromeOptions = [];
 
+    public function __construct(protected ?Config $config = null)
+    {
+    }
+
     public function get(): string
     {
         return $this->rendering;
@@ -39,14 +43,17 @@ class ChromePhpRenderer implements RendererContract
             ->save($this->rendering);
     }
 
-    public function render(Html $html, Css $css, Options $options, Config $config): static
+    public function render(Html $html, Css $css, Options $options, Config $config = null): static
     {
         $this->html = $html;
         $this->css = $css;
         $this->options = $options;
+        $this->config = $config ?? $this->config;
+
+        $this->phpChromeOptions = [];
 
         /** @var BrowserFactory */
-        $browserFactory = app()->make(BrowserFactory::class, ['chromeBinary' => $config->chromePath]);
+        $browserFactory = app()->make(BrowserFactory::class, ['chromeBinary' => $this->config?->chromePath]);
         $browser = $browserFactory->createBrowser();
         $page = $browser->createPage();
 
@@ -58,7 +65,7 @@ class ChromePhpRenderer implements RendererContract
         $this->setHeaderAndFooter();
         $this->phpChromeOptions['displayHeaderFooter'] = $this->options->displayHeaderFooter;
         $this->phpChromeOptions['printBackground'] = $this->options->printBackground;
-        $this->phpChromeOptions['preferCSSPageSize'] = $this->options->preferCSSPageSize;
+        $this->phpChromeOptions['preferCSSPageSize'] = $this->options->preferCssPageSize;
 
         $this->rendering = $page->pdf($this->phpChromeOptions)->getBase64();
         // ! PHP Fatal error:  Uncaught HeadlessChromium\Exception\PdfFailed: Cannot make a PDF. Reason : -32000 - Printing failed in vendor\chrome-php\chrome\src\PageUtils\PagePdf.php:119
@@ -76,7 +83,7 @@ class ChromePhpRenderer implements RendererContract
             'rawHeader' => true,
             'rawFooter' => true,
             'printBackground' => true,
-            'preferCSSPageSize' => true,
+            'preferCssPageSize' => true,
             'landscape' => true,
             'format' => true,
             'width' => true,
