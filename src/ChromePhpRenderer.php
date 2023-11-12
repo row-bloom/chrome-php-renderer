@@ -52,7 +52,7 @@ class ChromePhpRenderer implements RenderersContract
 
         $this->phpChromeOptions = [];
 
-        $browserFactory = new BrowserFactory($this->config?->getDriverConfig(ChromePhpConfig::class)->chromePath);
+        $browserFactory = new BrowserFactory($this->config?->getDriverConfig(ChromePhpConfig::class)?->chromePath);
         $browser = $browserFactory->createBrowser();
         $page = $browser->createPage();
 
