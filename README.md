@@ -21,8 +21,11 @@ app()->get(Support::class);
 
 Requires:
 
-- PHP 8.1
-- `sockets` extension.
+- PHP >= 8.1
+
+`chrome-php/chrome` dependencies:
+
+- ext-sockets
 
 ## Usage
 

@@ -6,13 +6,13 @@ use HeadlessChromium\BrowserFactory;
 use RowBloom\RowBloom\Config;
 use RowBloom\RowBloom\Fs\File;
 use RowBloom\RowBloom\Options;
-use RowBloom\RowBloom\Renderers\RendererContract;
+use RowBloom\RowBloom\Renderers\Contract as RenderersContract;
 use RowBloom\RowBloom\Renderers\Sizing\LengthUnit;
 use RowBloom\RowBloom\Renderers\Sizing\Margin;
 use RowBloom\RowBloom\Types\Css;
 use RowBloom\RowBloom\Types\Html;
 
-class ChromePhpRenderer implements RendererContract
+class ChromePhpRenderer implements RenderersContract
 {
     public const NAME = 'Chrome';
 
@@ -52,8 +52,7 @@ class ChromePhpRenderer implements RendererContract
 
         $this->phpChromeOptions = [];
 
-        /** @var BrowserFactory */
-        $browserFactory = app()->make(BrowserFactory::class, ['chromeBinary' => $this->config?->chromePath]);
+        $browserFactory = new BrowserFactory($this->config?->getDriverConfig(ChromePhpConfig::class)->chromePath);
         $browser = $browserFactory->createBrowser();
         $page = $browser->createPage();
 
