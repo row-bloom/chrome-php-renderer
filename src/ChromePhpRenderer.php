@@ -52,7 +52,7 @@ class ChromePhpRenderer implements RenderersContract
 
         $this->phpChromeOptions = [];
 
-        $browserFactory = new BrowserFactory($this->config?->getDriverConfig(ChromePhpConfig::class)?->chromePath);
+        $browserFactory = new BrowserFactory($this->getChromePhpConfig()?->chromePath);
         $browser = $browserFactory->createBrowser();
         $page = $browser->createPage();
 
@@ -79,8 +79,8 @@ class ChromePhpRenderer implements RenderersContract
     {
         return [
             'displayHeaderFooter' => true,
-            'rawHeader' => true,
-            'rawFooter' => true,
+            'headerTemplate' => true,
+            'footerTemplate' => true,
             'printBackground' => true,
             'preferCssPageSize' => true,
             'landscape' => true,
@@ -94,6 +94,11 @@ class ChromePhpRenderer implements RenderersContract
             'metadataSubject' => false,
             'metadataKeywords' => false,
         ];
+    }
+
+    private function getChromePhpConfig(): ?ChromePhpConfig
+    {
+        return $this->config?->getDriverConfig(ChromePhpConfig::class);
     }
 
     // ============================================================
@@ -130,14 +135,20 @@ class ChromePhpRenderer implements RenderersContract
 
     private function setHeaderAndFooter(): void
     {
-        // ! style="font-size:10px" needs to be specified on header and footer
-
         $this->phpChromeOptions['displayHeaderFooter'] = $this->options->displayHeaderFooter;
 
-        if ($this->options->displayHeaderFooter) {
-            $this->phpChromeOptions['headerTemplate'] = $this->options->rawHeader ?? '';
-            $this->phpChromeOptions['footerTemplate'] = $this->options->rawFooter ?? '';
+        if (! $this->options->displayHeaderFooter) {
+            return;
         }
+
+        $headerTemplate = $this->options->headerTemplate ?? '';
+
+        if ($this->getChromePhpConfig()?->mergeGlobalCss) {
+            $headerTemplate .= "<style>{$this->css}</style>";
+        }
+
+        $this->phpChromeOptions['headerTemplate'] = $headerTemplate;
+        $this->phpChromeOptions['footerTemplate'] = $this->options->footerTemplate ?? '';
     }
 
     private function setMargin(): void
