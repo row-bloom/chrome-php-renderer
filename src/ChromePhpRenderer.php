@@ -56,7 +56,7 @@ class ChromePhpRenderer implements RenderersContract
         $browser = $browserFactory->createBrowser();
         $page = $browser->createPage();
 
-        $page->navigate('data:text/html,'.$this->html())
+        $page->navigate('data:text/html;charset=utf8,'.rawurlencode($this->html()))
             ->waitForNavigation();
 
         $this->setPageFormat();
